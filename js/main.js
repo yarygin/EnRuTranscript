@@ -1,15 +1,23 @@
 function replaceSelectedText(selection, replacementText) {
-    var sel, range;
-    if (window.getSelection) {
-        sel = selection;
-        if (sel.rangeCount) {
-            range = sel.getRangeAt(0);
-            range.deleteContents();
-            range.insertNode(document.createTextNode(replacementText));
+    console.log($(':focus'));
+    if ($(':focus').length>0)
+    {
+        $(':focus').replaceSelectedText(replacementText);
+    }
+    else
+    {
+        var sel, range;
+        if (window.getSelection) {
+            sel = selection;
+            if (sel.rangeCount) {
+                range = sel.getRangeAt(0);
+                range.deleteContents();
+                range.insertNode(document.createTextNode(replacementText));
+            }
+        } else if (document.selection && document.selection.createRange) {
+            range = document.selection.createRange();
+            range.text = replacementText;
         }
-    } else if (document.selection && document.selection.createRange) {
-        range = document.selection.createRange();
-        range.text = replacementText;
     }
 }
 
