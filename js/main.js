@@ -1,6 +1,5 @@
 function replaceSelectedText(selection, replacementText) {
-    console.log($(':focus'));
-    if ($(':focus').length>0)
+    if ($(':focus').length>0 && !$($(':focus')[0]).is("div")) // vk hack
     {
         $(':focus').replaceSelectedText(replacementText);
     }
